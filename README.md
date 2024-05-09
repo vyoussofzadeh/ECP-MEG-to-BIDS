@@ -4,7 +4,7 @@ This repository contains scripts and tools designed to convert MEG datasets from
 
 ## Project Description
 
-The Epilepsy Connectome Project aims to advance our understanding of epilepsy through detailed imaging studies. The Magnetic Encephalography (MEG) data collected offers rich, dynamic insights into brain activity. Converting this data into BIDS format standardizes the data structure, making it more accessible and interoperable for researchers across various disciplines.
+The Epilepsy Connectome Project aims to advance our understanding of epilepsy through detailed imaging studies. The magnetoencephalography (MEG) data offers rich, dynamic insights into brain activity. Converting this data into BIDS format standardizes the data structure, making it more accessible and interoperable for researchers across various disciplines.
 
 ## Features
 

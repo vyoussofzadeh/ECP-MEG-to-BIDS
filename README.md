@@ -25,3 +25,10 @@ Clone this repository to your local machine:
 
 ```bash
 git clone https://github.com/yourusername/ECP-MEG-BIDS-Converter.git
+
+
+### Usage
+
+To convert data, run the conversion script from the command line:
+
+python convert_to_bids.py <input_file> <output_directory>

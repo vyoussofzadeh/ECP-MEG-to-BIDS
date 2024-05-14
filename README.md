@@ -42,4 +42,4 @@ export BIDS_DAYSBACK=????
 ```
 
 ```bash
-python convert_to_bids.py <input_file> <output_directory>
+python convert_to_bids.py <subject_ID>

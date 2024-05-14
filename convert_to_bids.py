@@ -123,7 +123,7 @@ except BaseException as e:
 
 #%% Write output logs
 bids_log = op.join(topdir, 'bids_logs', f'{subject}_bidslog.txt')
-with open(bids_log) as f:
+with open(bids_log, 'w') as f:
     f.writelines(errors)
 
 

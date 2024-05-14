@@ -81,7 +81,11 @@ for idx, row in dframe.iterrows():
                               run=row.run, root=bids_root)
         
         # Events ===  FIX!! - need to add an events parser
-        write_raw_bids(raw, bids_path, overwrite=True, anonymize=True)
+        write_raw_bids(raw, bids_path, 
+                       overwrite=True, 
+                       anonymize={'keep_his':False,'keep_source':False, 
+                                  'daysback':int(os.environ['BIDS_DAYSBACK'])
+                                  })
     except BaseException as e:
         errors.append(row.path)
         errors.append(str(e))

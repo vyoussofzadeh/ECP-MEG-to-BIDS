@@ -35,6 +35,11 @@ git clone https://github.com/yourusername/ECP-MEG-BIDS-Converter.git
 ## Usage
 
 To convert data, run the conversion script from the command line:
+```
+#Set the Daysback variable in bash before running - this will be pulled in from the code
+#Do not set this in github code or you will de-anonymize the date of your data
+export BIDS_DAYSBACK=????
+```
 
 ```bash
 python convert_to_bids.py <input_file> <output_directory>

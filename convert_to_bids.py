@@ -126,6 +126,8 @@ except BaseException as e:
     errors.append(str(e))
 
 #%% Write output logs
+errors = [i+'\n' for i in errors]  #add newlines
+
 bids_log = op.join(topdir, 'bids_logs', f'{subject}_bidslog.txt')
 with open(bids_log, 'w') as f:
     f.writelines(errors)

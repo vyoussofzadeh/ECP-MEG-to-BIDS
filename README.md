@@ -21,6 +21,11 @@ The Epilepsy Connectome Project aims to advance our understanding of epilepsy th
 
 ### Installation
 
+Create a conda environment with the required programs:
+```
+conda create -n bids_conv -c conda-forge mne mne-bids pandas "python<3.12" -y 
+```
+
 Clone this repository to your local machine:
 
 ```bash

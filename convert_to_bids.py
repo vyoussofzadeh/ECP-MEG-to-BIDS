@@ -89,35 +89,43 @@ for idx, row in dframe.iterrows():
 dframe.to_csv(op.join(logdir, f'{subject}_dataframe.csv'))    
 #%% Convert MRI to BIDS w/coreg
 
-#Strip out emptyrooms 
-dframe = dframe.loc[dframe.task.str.lower().str[0:2]!='er']
-row = dframe.iloc[0]
-
-raw = mne.io.read_raw_fif(row.path, allow_maxshield=True)
-trans = mne.read_trans(row.trans_fname)
-
-t1w_bids_path = \
-    BIDSPath(subject=row.subject, session='1', root=bids_root, suffix='T1w')
-
-# Each subject has its own subjects_dir.  All fs_subjectIDs are Anatomy
-landmarks = mne_bids.get_anat_landmarks(
-    image=row.mri, 
-    info=raw.info,
-    trans=trans,
-    fs_subject='Anatomy',
-    fs_subjects_dir=op.join(topdir, subject)
-    )
-
-# Write MRI bids
-t1w_bids_path = write_anat(
-    image=row.mri,
-    bids_path=t1w_bids_path,
-    landmarks=landmarks,
-    deface=False, 
-    overwrite=True
-    )
+try:
+    #Strip out emptyrooms 
+    dframe = dframe.loc[dframe.task.str.lower().str[0:2]!='er']
+    row = dframe.iloc[0]
+    
+    raw = mne.io.read_raw_fif(row.path, allow_maxshield=True)
+    trans = mne.read_trans(row.trans_fname)
+    
+    t1w_bids_path = \
+        BIDSPath(subject=row.subject, session='1', root=bids_root, suffix='T1w')
+    
+    # Each subject has its own subjects_dir.  All fs_subjectIDs are Anatomy
+    landmarks = mne_bids.get_anat_landmarks(
+        image=row.mri, 
+        info=raw.info,
+        trans=trans,
+        fs_subject='Anatomy',
+        fs_subjects_dir=op.join(topdir, subject)
+        )
+    
+    # Write MRI bids
+    t1w_bids_path = write_anat(
+        image=row.mri,
+        bids_path=t1w_bids_path,
+        landmarks=landmarks,
+        deface=False, 
+        overwrite=True
+        )
+except BaseException as e:
+    errors.append('MRI conversion error')
+    errors.append(str(e))
 
 #%% Write output logs
+bids_log = op.join(topdir, 'bids_logs', f'{subject}_bidslog.txt')
+with open(bids_log) as f:
+    f.writelines(errors)
+
 
     
     
